@@ -1,11 +1,9 @@
 import * as React from 'react'
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useSignUp } from '@clerk/clerk-expo'
 import { Link, useRouter } from 'expo-router'
 import { useState } from 'react'
 import { styles } from '@/assets/images/styles/auth.styles'
-import { COLORS } from '@/constants/colors'
-import { Ionicons } from '@expo/vector-icons'
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp()
   const router = useRouter()
@@ -66,28 +64,12 @@ const [error, setError] = useState("");
     }
   }
 
-  if (true) {
+  if (error) {
     return (
       <View style={styles.verificationContainer}>
 
-        <Text style={styles.title}>Verify your email</Text>
-
-{error ? (
-  <View style={styles.errorBox}>
-    <Ionicons name="alert-circle" size={20} color={COLORS.expense} />
-    <Text style={styles.errorText}>{error}</Text>
-    <TouchableOpacity onPress={() => setError("")}>
-      <Ionicons name="close" size={20} color={COLORS.textLight} />
-    </TouchableOpacity>
-  </View>
-) : null}
-
-
+        <Text >Verify your email</Text>
         <TextInput
-        style={[
-  styles.verificationInput,
-  error ? styles.errorInput : null
-]}
           value={code}
           placeholder="Enter your verification code"
           onChangeText={(code) => setCode(code)}
@@ -95,33 +77,36 @@ const [error, setError] = useState("");
         <TouchableOpacity onPress={onVerifyPress}>
           <Text>Verify</Text>
         </TouchableOpacity>
-      </View>   
+      </View>
     )
   }
 
   return (
-    <View>
+    <View style={styles.verificationContainer}>
       <>
-        <Text>Sign up</Text>
+        <Text style={styles.title}>Sign up</Text>
+        <Image style={styles.illustration} source={require("../../assets/images/styles/image2.png")}></Image>
         <TextInput
+        style={styles.verificationInput}
           autoCapitalize="none"
           value={emailAddress}
           placeholder="Enter email"
           onChangeText={(email) => setEmailAddress(email)}
         />
         <TextInput
+          style={styles.verificationInput}
           value={password}
           placeholder="Enter password"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
         />
-        <TouchableOpacity onPress={onSignUpPress}>
-          <Text>Continue</Text>
+        <TouchableOpacity style={styles.button} onPress={onSignUpPress}>
+          <Text style={styles.buttonText}>Continue</Text>
         </TouchableOpacity>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
           <Text>Already have an account?</Text>
           <Link href="/sign-in">
-            <Text>Sign in</Text>
+            <Text style={styles.linkText}>Sign in</Text>
           </Link>
         </View>
       </>

@@ -1,7 +1,8 @@
 import { useSignIn } from '@clerk/clerk-expo'
 import { Link, useRouter } from 'expo-router'
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { styles } from '@/assets/images/styles/auth.styles'
 
 export default function Page() {
   const { signIn, setActive, isLoaded } = useSignIn()
@@ -39,28 +40,37 @@ export default function Page() {
   }
 
   return (
-    <View>
-      <Text>Sign in</Text>
+    <View style={styles.verificationContainer}>
+
+<View style={styles.verificationContainer}>
+      <Text style={styles.title}>Sign in</Text>
+      <Image style={styles.illustration} source={require("../../assets/images/styles/image3.png")}/>
       <TextInput
+        style={styles.verificationInput}
         autoCapitalize="none"
         value={emailAddress}
         placeholder="Enter email"
         onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
       />
       <TextInput
+        style={styles.verificationInput}
         value={password}
         placeholder="Enter password"
         secureTextEntry={true}
         onChangeText={(password) => setPassword(password)}
       />
-      <TouchableOpacity onPress={onSignInPress}>
-        <Text>Continue</Text>
+      <TouchableOpacity style={styles.button} onPress={onSignInPress}>
+        <Text style={styles.buttonText}>Continue</Text>
       </TouchableOpacity>
-      <View style={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
-        <Link href="/sign-up">
-          <Text>Sign upt</Text>
+      <View  >
+        <Link  href="/sign-up">
+           <Text>If you don't have an account?</Text>
+          <Text style={styles.linkText}>Sign up</Text>
         </Link>
       </View>
     </View>
+
+    </View>
+
   )
 }
