@@ -1,43 +1,16 @@
-// app/_layout.tsx
+import { Slot } from "expo-router";
+import SafeScreen from "@/components/SafeScreen";
 import { ClerkProvider } from "@clerk/clerk-expo";
-import { Stack } from "expo-router";
+import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function RootLayout() {
   return (
-    <SafeAreaProvider>
-      <ClerkProvider publishableKey={process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!}>
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-          <StatusBar style="auto" />
-          <Stack screenOptions={{ headerShown: false }} />
-        </SafeAreaView>
-      </ClerkProvider>
-    </SafeAreaProvider>
+    <ClerkProvider tokenCache={tokenCache}>
+      <SafeScreen>
+        <Slot />
+      </SafeScreen>
+      <StatusBar style="dark" />
+    </ClerkProvider>
   );
 }
-
-
-
-
-
-// import { Stack } from "expo-router";
-// import { ClerkProvider, tokenCache } from "@clerk/clerk-expo";
-// import SafeScreen from "@/components/SafeScreen";
-
-// export default function RootLayout() {
-//   return (
-//     <ClerkProvider tokenCache={tokenCache}>
-//       <SafeScreen>
-//         <Stack screenOptions={{ headerShown: false }} />
-//       </SafeScreen>
-//     </ClerkProvider>
-//   );
-// }
-
-  
-  
-  
-  
-  
-      

@@ -60,10 +60,12 @@ export default function SignUpScreen() {
         console.error(JSON.stringify(signUpAttempt, null, 2));
       }
     } catch (err) {
-      // See https://clerk.com/docs/custom-flows/error-handling
-      // for more info on error handling
-      console.error(JSON.stringify(err, null, 2));
+    if (err.errors?.[0]?.code === "form_password_incorrect") {
+        setError("Password is incorrect. Please try again.");
+    } else {
+        setError("An error occurred. Please try again.");
     }
+}
   };
 
   if (error) {
@@ -116,15 +118,14 @@ export default function SignUpScreen() {
          value={password}
          placeholder="Enter password"
          placeholderTextColor="#9A8478"
-       secureTextEntry={false}
+       secureTextEntry={true}
          onChangeText={(password) => setPassword(password)}
        />
         <TouchableOpacity style={styles.button} onPress={onSignUpPress}>
           <Text style={styles.buttonText}> Sign up</Text>
         </TouchableOpacity>
         <View style={{ display: "flex", flexDirection: "row", gap: 3 }}>
-          <Text>Already have an account?</Text>
-          <Link href="/sign-in">
+          <Text>Already have an account?</Text> <Link href="/sign-in">
             <Text style={styles.linkText}>Sign in</Text>
           </Link>
         </View>
