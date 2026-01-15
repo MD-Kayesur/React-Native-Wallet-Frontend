@@ -1,3 +1,4 @@
+import { styles } from '@/app/(auth)/auth.styles'
 import { useClerk } from '@clerk/clerk-expo'
 import * as Linking from 'expo-linking'
 import { Text, TouchableOpacity } from 'react-native'
@@ -17,7 +18,7 @@ export const SignOutButton = () => {
     }
   }
   return (
-    <TouchableOpacity onPress={handleSignOut}>
+    <TouchableOpacity style={styles.logutButton}onPress={handleSignOut}>
       <Text>Sign out</Text>
     </TouchableOpacity>
   )
