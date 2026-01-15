@@ -6,6 +6,10 @@ import { SignOutButton } from "@/components/SignOutButton";
 import PageLoader from "../../components/PageLoader";
  import { Ionicons } from "@expo/vector-icons";
 import { styles } from "@/assets/images/styles/home.styles";
+import { useTransactions } from "@/hooks/useTransaction";
+import { TransactionItem } from "@/components/TransactionItem";
+import NoTransactionsFound from "@/components/NoTransactionsFound";
+ 
  
 export default function Page() {
   const { user } = useUser();
@@ -41,9 +45,9 @@ export default function Page() {
         {/* HEADER */}
         <View style={styles.header}>
           {/* LEFT */}
-          <View style={styles.headerLeft}>
+          {/* <View style={styles.headerLeft}>
             <Image
-              source={require("../../assets/images/logo.png")}
+              source={require(" ")}
               style={styles.headerLogo}
               resizeMode="contain"
             />
@@ -53,7 +57,7 @@ export default function Page() {
                 {user?.emailAddresses[0]?.emailAddress.split("@")[0]}
               </Text>
             </View>
-          </View>
+          </View> */}
           {/* RIGHT */}
           <View style={styles.headerRight}>
             <TouchableOpacity style={styles.addButton} onPress={() => router.push("/create")}>
@@ -73,7 +77,7 @@ export default function Page() {
 
       {/* FlatList is a performant way to render long lists in React Native. */}
       {/* it renders items lazily — only those on the screen. */}
-      {/* <FlatList
+      <FlatList
         style={styles.transactionsList}
         contentContainerStyle={styles.transactionsListContent}
         data={transactions}
@@ -81,7 +85,7 @@ export default function Page() {
         ListEmptyComponent={<NoTransactionsFound />}
         showsVerticalScrollIndicator={false}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-      /> */}
+      />
     </View>
   );
 }

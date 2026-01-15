@@ -1,6 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 
-import { styles } from "@/assets/images/styles/auth.styles";
-import { COLORS } from "@/constants/colors";
+ import { COLORS } from "@/constants/colors";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
@@ -17,6 +17,7 @@ import {
   Alert,
   ActivityIndicator,
 } from "react-native";
+import { styles } from "./auth.styles";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();

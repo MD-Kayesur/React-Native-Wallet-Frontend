@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { styles } from '@/assets/images/styles/auth.styles'
 import { COLORS } from '@/constants/colors'
 import { useSignIn } from '@clerk/clerk-expo'

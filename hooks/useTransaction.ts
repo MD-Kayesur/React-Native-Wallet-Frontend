@@ -6,7 +6,7 @@ import { Alert } from "react-native";
 const API_URL = "https://react-native-wallet-backend-pi5f.onrender.com/api";
 // const API_URL = "http://localhost:5001/api";
 
-export const useTransactions = (userId) => {
+export const useTransactions = (userId : string) => {
   const [transactions, setTransactions] = useState([]);
   const [summary, setSummary] = useState({
     balance: 0,
@@ -50,7 +50,7 @@ export const useTransactions = (userId) => {
     }
   }, [fetchTransactions, fetchSummary, userId]);
 
-  const deleteTransaction = async (id) => {
+  const deleteTransaction = async (id : string) => {
     try {
       const response = await fetch(`${API_URL}/transactions/${id}`, { method: "DELETE" });
       if (!response.ok) throw new Error("Failed to delete transaction");
@@ -60,7 +60,7 @@ export const useTransactions = (userId) => {
       Alert.alert("Success", "Transaction deleted successfully");
     } catch (error) {
       console.error("Error deleting transaction:", error);
-      Alert.alert("Error", error.message);
+      Alert.alert("Error", "Failed to delete transaction");
     }
   };
 
