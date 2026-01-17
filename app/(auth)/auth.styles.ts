@@ -23,7 +23,9 @@ export const styles = StyleSheet.create({
   },
   
   verificationContainer: {
-    backgroundColor: COLORS.white,
+    
+
+    backgroundColor: COLORS.background,
     borderRadius: 24,
     padding: 28,
     shadowColor: "#000",
@@ -35,6 +37,16 @@ export const styles = StyleSheet.create({
     marginVertical: 8,
   },
   
+
+//  verificationContainer: {
+//     flex: 1,
+//     backgroundColor: COLORS.background,
+//     padding: 20,
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+
+
   // Typography
   title: {
     fontSize: 32,
